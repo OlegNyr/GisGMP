@@ -1,4 +1,10 @@
 *.class
+# Root folder#
+.idea
+.svn
+files
+out
+target
 
 # Package Files #
 *.jar

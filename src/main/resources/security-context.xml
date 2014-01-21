@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+                                 http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                                 http://www.springframework.org/schema/security
+                                 http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+
+    <global-method-security pre-post-annotations="enabled" proxy-target-class="true" authentication-manager-ref="authenticationManager"/>
+    <!--Определяет доступ-->
+    <http auto-config="true" use-expressions="true" authentication-manager-ref="authenticationManager">
+        <intercept-url pattern="/account/login" access="permitAll"/>
+        <intercept-url pattern="/account/loginfailed" access="permitAll"/>
+        <intercept-url pattern="/res/**" access="permitAll"/>
+        <intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/reportAdmin/**" access="hasRole('ROLE_ADMIN')"/>
+
+        <intercept-url pattern="/" access="hasRole('ROLE_USER') OR hasRole('ROLE_REESTR')"/>
+        <intercept-url pattern="/reestr/**" access="hasRole('ROLE_REESTR')"/>
+
+        <intercept-url pattern="/**" access="hasRole('ROLE_USER')"/>
+        <form-login login-page="/account/login" default-target-url="/"
+                    authentication-failure-url="/account/loginfailed"/>
+        <logout invalidate-session="true" logout-success-url="/" logout-url="/account/logout"/>
+        <!--suppress SpringSecurityModelInspection -->
+        <!--<remember-me key="AuthProcDt" services-ref="ipTokenBasedRememberMeServices"/>-->
+        <remember-me key="AuthProcDt"  services-ref="persistentTokenBasedRememberMeServices" />
+        <http-basic/>
+    </http>
+
+    <beans:bean class="ru.nyrk.gisgmp.web.security.MemberRepositoryImpl" id="rememberRepository">
+        <beans:property name="dataSource" ref="dataSource" />
+    </beans:bean>
+
+    <!--Управляет данными записи-->
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider user-service-ref="jdbcUserService">
+            <password-encoder ref="passwordEncoder">
+                <salt-source ref="saltSource"/>
+            </password-encoder>
+        </authentication-provider>
+    </authentication-manager>
+
+
+    <beans:bean class="ru.nyrk.gisgmp.web.security.MyJdbcDaoImpl" id="jdbcUserService">
+        <beans:property name="dataSource" ref="dataSource"/>
+        <beans:property name="enableGroups" value="true"/>
+        <beans:property name="enableAuthorities" value="false"/>
+    </beans:bean>
+
+    <!--Шифрует пароль-->
+    <beans:bean class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" id="passwordEncoder"/>
+
+    <!--Управляет дополнением к паролю -->
+    <beans:bean class="org.springframework.security.authentication.dao.ReflectionSaltSource" id="saltSource">
+        <beans:property name="userPropertyToUse" value="getSalt"/>
+    </beans:bean>
+
+    <!--<beans:bean class="org.springframework.security.access.vote.UnanimousBased" id="unanimousBased">-->
+    <!--<beans:property name="decisionVoters">-->
+    <!--<beans:list>-->
+    <!--<beans:bean class="org.springframework.security.access.vote.RoleVoter" id="roleVoter"/>-->
+    <!--<beans:bean class="org.springframework.security.access.vote.AuthenticatedVoter" id="authenticatedVoter"/>-->
+    <!--</beans:list>-->
+    <!--</beans:property>-->
+    <!--</beans:bean>-->
+
+    <beans:bean class="ru.nyrk.gisgmp.web.security.DatabasePasswordSecurityBean"
+                id="passwordSecurityBean">
+        <beans:property name="dataSource" ref="dataSource"/>
+    </beans:bean>
+
+
+    <!--Управляет запомнить меня-->
+    <beans:bean class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices" id="persistentTokenBasedRememberMeServices">
+        <beans:property name="key" value="AuthProcDt"/>
+        <beans:property name="userDetailsService" ref="jdbcUserService"/>
+        <beans:property name="parameter" value="_remember_me"/>
+        <beans:property name="cookieName" value="REMEMBER_ME"/>
+        <beans:property name="tokenRepository" ref="rememberRepository"/>
+        <beans:property name="tokenValiditySeconds" value="3600" />
+    </beans:bean>
+
+    <!--&lt;!&ndash;Управляет учетными записями&ndash;&gt;-->
+    <!--<beans:bean class="ru.nyrk.procdt.util.security.InMemoryChangePasswordDaoImpl" id="userService">-->
+    <!--<beans:constructor-arg>-->
+    <!--<beans:props>-->
+    <!--<beans:prop key="user">user,ROLE_USER</beans:prop>-->
+    <!--</beans:props>-->
+    <!--</beans:constructor-arg>-->
+    <!--</beans:bean>-->
+
+
+</beans:beans>

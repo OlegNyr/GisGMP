@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context-3.2.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util-3.2.xsd">
+    <context:annotation-config/>
+    <context:component-scan base-package="ru.nyrk.gisgmp"/>
+
+    <util:list value-type="com.thoughtworks.xstream.converters.ConverterMatcher" id="converters">
+        <bean class="com.thoughtworks.xstream.converters.basic.DateConverter">
+            <constructor-arg index="0" value="yyyy-MM-dd'T'HH:mm:ss"/>
+        </bean>
+        <bean class="ru.nyrk.gisgmp.web.converters.xstream.ConverterJodaTime"/>
+        <bean class="ru.nyrk.gisgmp.web.converters.xstream.ExtraConverter"/>
+    </util:list>
+
+    <bean class="ru.nyrk.gisgmp.web.converters.xstream.HeaderXStreamMarshaller" id="xStreamMarshaller">
+        <property name="autodetectAnnotations" value="true"/>
+        <property name="converters" ref="converters"/>
+    </bean>
+
+    <bean id="configurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>file:${gisgmp.home}/conf/*.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <import resource="datasource-context.xml"/>
+    <import resource="security-context.xml" />
+
+
+</beans>

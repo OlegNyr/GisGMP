@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <definition name="account/login" extends="empty">
+        <put-attribute name="body" value="/WEB-INF/views/account/login.jsp" />
+    </definition>
+
+    <definition name="account/userinfo" extends="default">
+        <put-attribute name="body" value="/WEB-INF/views/account/userinfo.jsp" />
+    </definition>
+
+</tiles-definitions>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+		   xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" 
+		   xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+   <SOAP-ENV:Body wsu:Id="body">
+      <n1:UnifoTransferMsg 
+          xmlns:n1="http://roskazna.ru/SmevUnifoService/"
+	  xmlns:pirq="http://roskazna.ru/xsd/PGU_ImportRequest" 
+	  xmlns:smev="http://smev.gosuslugi.ru/rev111111" 
+	  xmlns:unifo="http://rosrazna.ru/xsd/SmevUnifoService" 
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xmlns:ds="http://www.w3.org/2000/09/xmldsig#"
+	  xsi:schemaLocation="http://roskazna.ru/SmevUnifoService/ MethodMsg.xsd" 
+	  xmlns:n3="http://www.altova.com/samplexml/other-namespace" 
+	  >
+         <smev:Message>
+            <smev:Sender>
+               <smev:Code>RKZN35001</smev:Code>
+               <smev:Name>Казначейство России</smev:Name>
+            </smev:Sender>
+            <smev:Recipient>
+               <smev:Code>RKZN35001</smev:Code>
+               <smev:Name>Казначейство России</smev:Name>
+            </smev:Recipient>
+            <smev:TypeCode>GFNC</smev:TypeCode>
+            <smev:Status>REQUEST</smev:Status>
+            <smev:Date>2012-07-25T09:40:48.0Z</smev:Date>
+            <smev:ExchangeType>6</smev:ExchangeType>
+         </smev:Message>
+         <smev:MessageData>
+            <smev:AppData>
+               <unifo:ImportData>
+                  <pirq:ImportRequest>
+                     <PostBlock>
+                        <ID>13454</ID>
+                        <TimeStamp>2012-07-25T09:40:47.0Z</TimeStamp>
+                        <SenderIdentifier>00022</SenderIdentifier>
+                     </PostBlock>
+                     <Charge SupplierBillID="19255500000000000079">
+                        <BillDate>2011-03-10</BillDate>
+                        <SupplierOrgInfo>
+                           <Name>Управление Федеральной миграционной службы по Республике Татарстан</Name>
+                           <INN>1655102196</INN>
+                           <KPP>165501001</KPP>
+                           <Account>
+                              <Account>40101810800000010001</Account>
+                              <Bank>
+                                 <Name>ГРКЦ НБ РТ г. Казани</Name>
+                                 <BIK>049205001</BIK>
+                              </Bank>
+                           </Account>
+                        </SupplierOrgInfo>
+                        <BillFor>Госпошлина за выдачу загранпаспорта</BillFor>
+                        <TotalAmount>100000</TotalAmount>
+                        <ChangeStatus>1</ChangeStatus>
+                        <TreasureBranch>УФК по Республике Татарстан</TreasureBranch>
+                        <KBK>19210806000011000110</KBK>
+                        <OKATO>92401000000</OKATO>
+                        <BudgetIndex>
+                           <Status>0</Status>
+                           <PaymentType>0</PaymentType>
+                           <Purpose>0</Purpose>
+                           <TaxPeriod>0</TaxPeriod>
+                           <TaxDocNumber>0</TaxDocNumber>
+                           <TaxDocDate>0</TaxDocDate>
+                        </BudgetIndex>
+                        <ApplicationID>455555</ApplicationID>
+                        <UnifiedPayerIdentifier>0100000000006667775555643</UnifiedPayerIdentifier>
+                     </Charge>
+                  </pirq:ImportRequest>
+               </unifo:ImportData>
+            </smev:AppData>
+         </smev:MessageData>
+      </n1:UnifoTransferMsg>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

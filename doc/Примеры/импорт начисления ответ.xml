@@ -1,0 +1,57 @@
+﻿<soapenv:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+   <soapenv:Header>
+      <wsse:Security soapenv:actor="http://smev.gosuslugi.ru/actors/smev">
+         <wsse:BinarySecurityToken EncodingType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-soap-message-security-1.0#Base64Binary" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3" wsu:Id="CertId">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</wsse:BinarySecurityToken>
+         <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+            <ds:SignedInfo>
+               <ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+               <ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#gostr34102001-gostr3411"/>
+               <ds:Reference URI="#body">
+                  <ds:Transforms>
+                     <ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+                  </ds:Transforms>
+                  <ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#gostr3411"/>
+                  <ds:DigestValue>sBL/TB1VKDu8VGrEN2iNU3ibT5XbSIKOYqUENtNboIk=</ds:DigestValue>
+               </ds:Reference>
+            </ds:SignedInfo>
+            <ds:SignatureValue>Hq6k6tHuJgKPJyR/DT9bIMuUGAOkbVrTcv+a+rVxwU9hPUtz/HAUhVGAbLUXAQj+p14Dzg3/ortaSQPVRFoTeg==</ds:SignatureValue>
+            <ds:KeyInfo>
+               <wsse:SecurityTokenReference>
+                  <wsse:Reference URI="#CertId" ValueType="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3"/>
+               </wsse:SecurityTokenReference>
+            </ds:KeyInfo>
+         </ds:Signature>
+      </wsse:Security>
+   </soapenv:Header>
+   <S:Body wsu:Id="body">
+      <ns11:UnifoTransferMsg xmlns:ns10="http://www.w3.org/2004/08/xop/include" xmlns:ns11="http://roskazna.ru/SmevUnifoService/" xmlns:ns12="http://roskazna.ru/xsd/ExportQuittanceResponse" xmlns:ns13="http://roskazna.ru/xsd/ExportIncomesResponse" xmlns:ns14="http://roskazna.ru/xsd/ExportPaymentsResponse" xmlns:ns15="http://roskazna.ru/xsd/PGU_ChargesResponse" xmlns:ns16="http://roskazna.ru/xsd/PaymentInfo" xmlns:ns17="http://roskazna.ru/xsd/Charge" xmlns:ns2="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://smev.gosuslugi.ru/rev111111" xmlns:ns4="http://roskazna.ru/xsd/PGU_ImportRequest" xmlns:ns5="http://rosrazna.ru/xsd/SmevUnifoService" xmlns:ns6="http://roskazna.ru/xsd/Ticket" xmlns:ns7="http://roskazna.ru/xsd/PGU_DataRequest" xmlns:ns8="http://roskazna.ru/xsd/DoAcknowledgmentRequest" xmlns:ns9="http://roskazna.ru/xsd/DoAcknowledgmentResponse">
+         <ns3:Message>
+            <ns3:Sender>
+               <smev:Code>RKZN35001</smev:Code>
+               <smev:Name>Казначейство России</smev:Name>
+            </smev:Sender>
+            <smev:Recipient>
+               <smev:Code>RKZN35001</smev:Code>
+               <smev:Name>Казначейство России</smev:Name>
+            </ns3:Recipient>
+            <ns3:TypeCode>GFNC</ns3:TypeCode>
+            <ns3:Status>RESULT</ns3:Status>
+            <ns3:Date>2012-07-25T13:25:30.495+04:00</ns3:Date>
+            <ns3:ExchangeType>6</ns3:ExchangeType>
+         </ns3:Message>
+         <ns3:MessageData>
+            <ns3:AppData>
+               <ns5:ImportDataResponse>
+                  <ns6:Ticket>
+                     <PostBlock>
+                        <ID>13454</ID>
+                        <TimeStamp>2012-07-25T13:25:3.495+04:00</TimeStamp>
+                        <SenderIdentifier>9500</SenderIdentifier>
+                     </PostBlock>
+                  </ns6:Ticket>
+               </ns5:ImportDataResponse>
+            </ns3:AppData>
+         </ns3:MessageData>
+      </ns11:UnifoTransferMsg>
+   </S:Body>
+</soapenv:Envelope>
